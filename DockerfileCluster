@@ -1,0 +1,10 @@
+FROM        m9rcy/mule:latest
+MAINTAINER m9rcy
+ARG         cluster_conf
+ENV         NODE_ID 1
+ENV         MULE_ENV dev
+WORKDIR     .
+RUN         echo "$(cat ./properties/$cluster_conf)" > /opt/mule-standalone-3.9.0/mule-cluster.properties
+RUN         sed -i '/wrapper.java.additional.15=-Dorg.quartz.scheduler.skipUpdateCheck=true/a wrapper.java.additional.16=-Dmule.nodeId=%NODE_ID%\nwrapper.java.additional.17=-Dmule.env=%MULE_ENV%' /opt/mule/conf/wrapper.conf
+# Hazelcast ports
+EXPOSE      5701 54327
