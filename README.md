@@ -37,3 +37,8 @@ This means only exposed port is 8081, if the application has other needs you sho
 ```
 -p 1234:1234
 ````
+
+### Tips
+
+Use docker inspect to identify the ip address or use docker machine and let it assign the localhost to all container in a standard way.
+
